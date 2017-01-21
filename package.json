@@ -1,0 +1,19 @@
+{
+  "name": "DateFolder",
+  "description": "Organises files in a directory into subdirectories based on file creation date.",
+  "version": "0.0.1",
+  "license": "Unlicense",
+  "author": {
+    "name": "Adrian Parker",
+    "email": "github_author@iceknife.com",
+    "url": "http://adrianparker.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adrianparker/DateFolder.git"
+  },
+  "devDependencies": {
+    "eslint": "^3.14.0",
+    "jshint": "^2.9.4"
+  }
+}
