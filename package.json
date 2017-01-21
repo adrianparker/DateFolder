@@ -1,7 +1,8 @@
 {
-  "name": "DateFolder",
+  "name": "date-folder",
   "description": "Organises files in a directory into subdirectories based on file creation date.",
   "version": "0.0.1",
+  "main": "DateFolder.js",
   "license": "Unlicense",
   "author": {
     "name": "Adrian Parker",
