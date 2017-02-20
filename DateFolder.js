@@ -1,6 +1,7 @@
 "use strict";
 
-var fs = require('fs');
+var fs = require('fs'),
+    DateConverter = require('./DateConverter.js');
 
 var existingFolders = [],
     toCreate = {};
@@ -19,8 +20,8 @@ function processDirectoryContent(err, files) {
         files.forEach(function (entry) {
             processDirectoryEntry(entry);
         });
-        for (var toCreateFolder in toCreate){
-            if(toCreate.hasOwnProperty(toCreateFolder)){
+        for (var toCreateFolder in toCreate) {
+            if (toCreate.hasOwnProperty(toCreateFolder)) {
                 console.log('Will create folder %s with file count %s', toCreateFolder, toCreate[toCreateFolder].length);
                 // if existingFolders contains toCreateFolder... ? use it or error?
             }
@@ -36,7 +37,7 @@ function processDirectoryEntry(entry) {
     if (lstat.isDirectory()) {
         existingFolders.push(entry);
     } else if (lstat.isFile()) {
-        var birthtime = convertToYYYYMMDD(lstat.birthtime);
+        var birthtime = DateConverter.convertToYYYYMMDD(lstat.birthtime);
         if (toCreate.hasOwnProperty(birthtime)) {
             toCreate[birthtime].push(entry);
         } else {
@@ -45,12 +46,6 @@ function processDirectoryEntry(entry) {
     } else {
         console.warn('%s is neither file nor directory, ignoring', entry);
     }
-}
-
-function convertToYYYYMMDD(birthtime) {
-    var mm = birthtime.getMonth() + 1;
-    var dd = birthtime.getDate();
-    return [birthtime.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('');
 }
 
 DateFolder();
